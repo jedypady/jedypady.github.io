@@ -1,9 +1,9 @@
 const PORTFOLIO_DATA = {
   "about": {
     "photo": "",
-    "heading": "An <span class=\"text-gradient\">AI & multimedia specialist</span> who ships tools that make organizations run smarter.",
+    "heading": "An <span class=\"text-gradient\">AI & multimedia professional</span> who ships tools that make organizations run smarter.",
     "paragraphs": [
-      "I'm an AI and multimedia specialist based in Quezon City, Philippines. I design AI-driven workflows, produce multimedia content, and build internal platforms that streamline operations.",
+      "I'm an AI and multimedia professional based in Quezon City, Philippines. I design AI-driven workflows, produce multimedia content, and build internal platforms that streamline operations.",
       "My experience includes deploying AI robotics with Python and OpenCV, producing video and motion graphics for brands, and shipping 37 internal tools — scheduling systems, AI-powered report generators, facial recognition attendance, and more.",
       "I hold a Master of Science in Engineering from Soongsil University (Seoul) and a Bachelor of Arts in Multimedia Studies from the University of the Philippines."
     ],
