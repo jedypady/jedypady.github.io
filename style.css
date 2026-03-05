@@ -14,10 +14,10 @@
   --text: #e8eaf0;
   --text-secondary: #7d8594;
   --text-tertiary: #4d5566;
-  --accent-1: #4a7cff;
-  --accent-2: #6fa3ff;
-  --accent-3: #8bb8ff;
-  --gradient: linear-gradient(135deg, #4a7cff, #6fa3ff, #8bb8ff);
+  --accent-1: #004AAD;
+  --accent-2: #3373C4;
+  --accent-3: #5C96D6;
+  --gradient: linear-gradient(135deg, #004AAD, #3373C4, #5C96D6);
   --font-primary: 'Inter', -apple-system, sans-serif;
   --font-display: 'DM Sans', sans-serif;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -347,14 +347,14 @@ body:has(button:hover) .cursor-follower {
 .badge-dot {
   width: 8px;
   height: 8px;
-  background: #4a7cff;
+  background: #004AAD;
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 124, 255, 0.4); }
-  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(74, 124, 255, 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 74, 173, 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(0, 74, 173, 0); }
 }
 
 .hero-name {
@@ -429,7 +429,7 @@ body:has(button:hover) .cursor-follower {
   background: var(--accent-1);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(74, 124, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 74, 173, 0.3);
 }
 
 .btn-primary svg {
@@ -675,8 +675,8 @@ body:has(button:hover) .cursor-follower {
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: rgba(74, 124, 255, 0.1);
-  border: 1px solid rgba(74, 124, 255, 0.2);
+  background: rgba(0, 74, 173, 0.1);
+  border: 1px solid rgba(0, 74, 173, 0.2);
   margin-bottom: 1.5rem;
   color: var(--accent-1);
 }
@@ -705,8 +705,8 @@ body:has(button:hover) .cursor-follower {
 .tag {
   display: inline-block;
   padding: 0.375rem 0.875rem;
-  background: rgba(74, 124, 255, 0.08);
-  border: 1px solid rgba(74, 124, 255, 0.15);
+  background: rgba(0, 74, 173, 0.08);
+  border: 1px solid rgba(0, 74, 173, 0.15);
   border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -744,8 +744,8 @@ body:has(button:hover) .cursor-follower {
 
 .tech-tag {
   padding: 0.375rem 0.875rem;
-  background: rgba(74, 124, 255, 0.06);
-  border: 1px solid rgba(74, 124, 255, 0.12);
+  background: rgba(0, 74, 173, 0.06);
+  border: 1px solid rgba(0, 74, 173, 0.12);
   border-radius: 100px;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -815,15 +815,15 @@ body:has(button:hover) .cursor-follower {
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: rgba(74, 124, 255, 0.1);
-  border: 1px solid rgba(74, 124, 255, 0.2);
+  background: rgba(0, 74, 173, 0.1);
+  border: 1px solid rgba(0, 74, 173, 0.2);
   margin-bottom: 1.25rem;
   color: var(--accent-1);
 }
 
 .icon-accent {
-  background: rgba(111, 163, 255, 0.1);
-  border-color: rgba(111, 163, 255, 0.2);
+  background: rgba(51, 115, 196, 0.1);
+  border-color: rgba(51, 115, 196, 0.2);
   color: var(--accent-2);
 }
 
@@ -863,7 +863,7 @@ body:has(button:hover) .cursor-follower {
 }
 
 .portfolio-item:hover .city-tag {
-  border-color: rgba(74, 124, 255, 0.2);
+  border-color: rgba(0, 74, 173, 0.2);
   color: var(--text-secondary);
 }
 
@@ -1006,8 +1006,8 @@ body:has(button:hover) .cursor-follower {
 .article-type {
   display: inline-block;
   padding: 0.3rem 0.75rem;
-  background: rgba(139, 184, 255, 0.08);
-  border: 1px solid rgba(139, 184, 255, 0.15);
+  background: rgba(92, 150, 214, 0.08);
+  border: 1px solid rgba(92, 150, 214, 0.15);
   border-radius: 100px;
   font-size: 0.7rem;
   font-weight: 600;
@@ -1165,9 +1165,9 @@ body:has(button:hover) .cursor-follower {
 
 .contact-email:hover {
   border-color: var(--accent-1);
-  background: rgba(74, 124, 255, 0.08);
+  background: rgba(0, 74, 173, 0.08);
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(74, 124, 255, 0.15);
+  box-shadow: 0 15px 40px rgba(0, 74, 173, 0.15);
 }
 
 .email-label {
@@ -1305,7 +1305,7 @@ body:has(button:hover) .cursor-follower {
 .carousel-arrow:hover {
   border-color: var(--accent-1);
   color: var(--text);
-  background: rgba(74, 124, 255, 0.1);
+  background: rgba(0, 74, 173, 0.1);
   transform: scale(1.08);
 }
 
@@ -1539,8 +1539,8 @@ body:has(button:hover) .cursor-follower {
 }
 
 .app-card.featured {
-  border-color: rgba(74, 124, 255, 0.3);
-  background: rgba(74, 124, 255, 0.05);
+  border-color: rgba(0, 74, 173, 0.3);
+  background: rgba(0, 74, 173, 0.05);
   flex-direction: column;
 }
 
@@ -1565,7 +1565,7 @@ body:has(button:hover) .cursor-follower {
 
 .featured-badge {
   display: inline-block;
-  background: var(--accent-1, #4a7cff);
+  background: var(--accent-1, #004AAD);
   color: #fff;
   font-size: 0.7rem;
   font-weight: 600;
@@ -1600,8 +1600,8 @@ body:has(button:hover) .cursor-follower {
 }
 
 .btn-view-all:hover {
-  border-color: var(--accent-1, #4a7cff);
-  background: rgba(74, 124, 255, 0.1);
+  border-color: var(--accent-1, #004AAD);
+  background: rgba(0, 74, 173, 0.1);
   transform: translateY(-2px);
 }
 
@@ -1734,7 +1734,7 @@ body:has(button:hover) .cursor-follower {
 .store-badge:hover {
   border-color: var(--accent-1);
   color: var(--text);
-  background: rgba(74, 124, 255, 0.08);
+  background: rgba(0, 74, 173, 0.08);
 }
 
 /* --- AI Feature Card --- */
