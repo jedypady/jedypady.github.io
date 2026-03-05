@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Jed Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0b;
+      --bg-secondary: #111113;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --text: #f5f5f7;
+      --text-secondary: #8e8e93;
+      --text-tertiary: #636366;
+      --accent: #6c5ce7;
+      --accent-2: #00cec9;
+      --danger: #ff6b6b;
+      --danger-hover: #ee5a24;
+      --success: #00b894;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Password gate */
+    #passwordGate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+    }
+    #passwordGate.hidden { display: none; }
+    #passwordGate h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; }
+    #passwordGate input {
+      background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text);
+      padding: 0.75rem 1.25rem; border-radius: var(--radius-sm); font-size: 1rem;
+      width: 280px; outline: none;
+    }
+    #passwordGate input:focus { border-color: var(--accent); }
+    #passwordGate .error { color: var(--danger); font-size: 0.85rem; min-height: 1.25rem; }
+
+    /* Header */
+    .admin-header {
+      padding: 1.25rem 2rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem; font-weight: 600;
+    }
+    .admin-header h1 span { color: var(--accent); }
+    .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+    /* Buttons */
+    .btn {
+      padding: 0.6rem 1.25rem; border-radius: var(--radius-sm);
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+    .btn-primary { background: var(--accent); border-color: var(--accent); }
+    .btn-primary:hover { filter: brightness(1.15); }
+    .btn-danger { color: var(--danger); }
+    .btn-danger:hover { background: rgba(255,107,107,0.1); border-color: var(--danger); }
+    .btn-success { background: var(--success); border-color: var(--success); color: #fff; }
+    .btn-success:hover { filter: brightness(1.15); }
+    .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.8rem; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 0; border-bottom: 1px solid var(--border);
+      padding: 0 2rem; background: var(--bg-secondary);
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .tab {
+      padding: 0.85rem 1.25rem; font-size: 0.85rem; font-weight: 500;
+      color: var(--text-secondary); cursor: pointer; border: none;
+      background: none; border-bottom: 2px solid transparent;
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Main content */
+    .admin-main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    /* Category panel */
+    .category-panel { display: none; }
+    .category-panel.active { display: block; }
+    .panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .panel-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem; font-weight: 600;
+    }
+    .item-count {
+      color: var(--text-secondary); font-size: 0.85rem;
+      background: var(--surface); padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .card-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    /* Item card */
+    .item-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .item-card:hover { border-color: var(--border-hover); }
+    .item-thumb {
+      aspect-ratio: 4/3; overflow: hidden; background: var(--bg);
+      position: relative;
+    }
+    .item-thumb img, .item-thumb video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .item-thumb .placeholder {
+      display: flex; align-items: center; justify-content: center;
+      height: 100%; color: var(--text-tertiary); font-size: 0.8rem;
+    }
+    .item-body { padding: 0.75rem; }
+    .item-body .item-title {
+      font-size: 0.85rem; font-weight: 500; margin-bottom: 0.25rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .item-body .item-meta {
+      font-size: 0.75rem; color: var(--text-secondary);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .item-actions {
+      display: flex; gap: 0.5rem; padding: 0 0.75rem 0.75rem;
+    }
+    .item-actions .btn { flex: 1; justify-content: center; }
+
+    /* Article / education cards in admin */
+    .text-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .text-card:hover { border-color: var(--border-hover); }
+    .text-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .text-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .text-card .meta { font-size: 0.8rem; color: var(--accent); margin-bottom: 0.75rem; }
+    .text-card .card-actions { display: flex; gap: 0.5rem; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius); width: 90%; max-width: 520px;
+      max-height: 85vh; overflow-y: auto; padding: 2rem;
+    }
+    .modal h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1.5rem; font-size: 1.15rem;
+    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 500;
+      color: var(--text-secondary); margin-bottom: 0.4rem;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.65rem 0.85rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-family: inherit; font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .modal-actions {
+      display: flex; gap: 0.75rem; justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 2000;
+      background: var(--success); color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: var(--radius-sm);
+      font-size: 0.85rem; font-weight: 500;
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.active { transform: translateY(0); opacity: 1; }
+    .toast.error { background: var(--danger); }
+
+    /* Unsaved indicator */
+    .unsaved-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--danger); display: none;
+    }
+    .unsaved-dot.active { display: block; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .admin-header { padding: 1rem; flex-wrap: wrap; gap: 0.75rem; }
+      .tabs { padding: 0 1rem; }
+      .admin-main { padding: 1rem; }
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .modal { width: 95%; padding: 1.25rem; }
+    }
+
+    /* Confirm dialog */
+    .confirm-overlay {
+      position: fixed; inset: 0; z-index: 1100;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .confirm-overlay.active { opacity: 1; pointer-events: auto; }
+    .confirm-box {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; max-width: 400px; width: 90%;
+      text-align: center;
+    }
+    .confirm-box p { margin-bottom: 1.25rem; font-size: 0.95rem; }
+    .confirm-box .confirm-actions { display: flex; gap: 0.75rem; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  <!-- Password Gate -->
+  <div id="passwordGate">
+    <h2>Admin Access</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password" autofocus>
+    <div class="error" id="passwordError"></div>
+  </div>
+
+  <!-- Admin UI (hidden until auth) -->
+  <div id="adminApp" style="display:none;">
+
+    <header class="admin-header">
+      <h1>JED<span>.</span> Admin</h1>
+      <div class="header-actions">
+        <div class="unsaved-dot" id="unsavedDot" title="Unsaved changes"></div>
+        <button class="btn" id="btnResetData">Reset to Default</button>
+        <button class="btn btn-success" id="btnExport">Export data.js</button>
+        <a href="index.html" class="btn" target="_blank">View Site</a>
+      </div>
+    </header>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="photography">Photography</button>
+      <button class="tab" data-tab="videography">Videography</button>
+      <button class="tab" data-tab="graphics">Graphics</button>
+      <button class="tab" data-tab="publications">Publications</button>
+      <button class="tab" data-tab="uiux">UI/UX</button>
+      <button class="tab" data-tab="ai">AI Robotics</button>
+      <button class="tab" data-tab="apps">Apps</button>
+      <button class="tab" data-tab="articles">Articles</button>
+      <button class="tab" data-tab="education">Education</button>
+      <button class="tab" data-tab="certificates">Certificates</button>
+    </div>
+
+    <main class="admin-main" id="adminMain"></main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+      <p id="confirmMessage">Are you sure?</p>
+      <div class="confirm-actions">
+        <button class="btn" id="confirmCancel">Cancel</button>
+        <button class="btn btn-danger" id="confirmOk">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
