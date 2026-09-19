@@ -496,11 +496,10 @@ const PORTFOLIO_DATA = {
       "title": "The ICAN Herald",
       "issue": "Summer 2026",
       "tag": "Latest Edition",
-      "description": "Quarterly academy digital magazine featuring student journalism, institutional research, and creative literature.",
+      "description": "Quarterly academy publication showcasing student journalism, institutional research, and creative writing.",
       "src": "assets/publications/covers/ican-herald-summer-2026-cover.jpg",
       "cover": "assets/publications/covers/ican-herald-summer-2026-cover.jpg",
       "pdf": "assets/publications/pdf/ican-herald-summer-2026.pdf",
-      "reader": "https://herald.icanacademy.work/read/ican-herald-summer-2026",
       "fileSize": "12.0 MB",
       "alt": "The ICAN Herald — Summer 2026"
     },
@@ -509,27 +508,12 @@ const PORTFOLIO_DATA = {
       "title": "AI Literacy",
       "issue": "Winter 2025",
       "tag": "Special Issue",
-      "description": "Comprehensive edition examining artificial intelligence in education, computational literacy, and ethical AI integration.",
+      "description": "Curated feature exploring generative AI, algorithmic thinking, and ethical digital integration in modern curricula.",
       "src": "assets/publications/covers/ai-literacy-winter-2025-cover.jpg",
       "cover": "assets/publications/covers/ai-literacy-winter-2025-cover.jpg",
       "pdf": "assets/publications/pdf/ai-literacy-winter-2025.pdf",
-      "reader": "https://herald.icanacademy.work/read/ai-literacy-winter-2025",
       "fileSize": "9.8 MB",
       "alt": "AI Literacy — Winter 2025"
-    },
-    {
-      "id": "pub_the_last_war_2026",
-      "title": "The Last War We Fought",
-      "issue": "Original Book • Feb 2026",
-      "tag": "Student Book",
-      "author": "Kim Raon (Teacher Paula)",
-      "description": "Student-authored and illustrated digital publication produced through ICAN's creative writing and digital storytelling program.",
-      "src": "assets/publications/covers/the-last-war-we-fought-kim-raon-cover.jpg",
-      "cover": "assets/publications/covers/the-last-war-we-fought-kim-raon-cover.jpg",
-      "pdf": "assets/publications/pdf/the-last-war-we-fought-kim-raon.pdf",
-      "reader": "https://herald.icanacademy.work/book/the-last-war-we-fought-kim-raon",
-      "fileSize": "8.5 MB",
-      "alt": "The Last War We Fought — Kim Raon"
     },
     {
       "id": "pub_corona_virus_winter_2019",
@@ -540,7 +524,6 @@ const PORTFOLIO_DATA = {
       "src": "assets/publications/covers/corona-virus-winter-2019-cover.jpg",
       "cover": "assets/publications/covers/corona-virus-winter-2019-cover.jpg",
       "pdf": "assets/publications/pdf/corona-virus-winter-2019.pdf",
-      "reader": "https://herald.icanacademy.work/read/corona-virus-winter-2019",
       "fileSize": "2.8 MB",
       "alt": "Corona Virus — Winter 2019"
     },
@@ -553,7 +536,6 @@ const PORTFOLIO_DATA = {
       "src": "assets/publications/covers/east-asia-and-the-world-summer-2019-cover.jpg",
       "cover": "assets/publications/covers/east-asia-and-the-world-summer-2019-cover.jpg",
       "pdf": "assets/publications/pdf/east-asia-and-the-world-summer-2019.pdf",
-      "reader": "https://herald.icanacademy.work/read/east-asia-and-the-world-summer-2019",
       "fileSize": "5.7 MB",
       "alt": "East Asia and the World — Summer 2019"
     },
@@ -566,7 +548,6 @@ const PORTFOLIO_DATA = {
       "src": "assets/publications/covers/deep-freeze-winter-2018-cover.jpg",
       "cover": "assets/publications/covers/deep-freeze-winter-2018-cover.jpg",
       "pdf": "assets/publications/pdf/deep-freeze-winter-2018.pdf",
-      "reader": "https://herald.icanacademy.work/read/deep-freeze-winter-2018",
       "fileSize": "12.0 MB",
       "alt": "Deep Freeze — Winter 2018"
     }

@@ -150,15 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = pub.description || '';
         const authorHtml = pub.author ? `<div class="pub-author"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${pub.author}</div>` : '';
         const sizePill = pub.fileSize ? `<span class="pub-filesize">${pub.fileSize}</span>` : '';
-        const readerBtn = pub.reader ? `
-          <a href="${pub.reader}" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary" title="Open digital flipbook reader">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <span>Read Online</span>
-          </a>` : '';
-        const pdfBtn = pub.pdf ? `
-          <a href="${pub.pdf}" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-secondary" title="View or download PDF">
+        const viewPdfBtn = pub.pdf ? `
+          <a href="${pub.pdf}" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary" title="Open and read full PDF">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            <span>PDF</span>
+            <span>Read PDF</span>
+          </a>` : '';
+        const downloadBtn = pub.pdf ? `
+          <a href="${pub.pdf}" download class="pub-btn pub-btn-secondary" title="Download PDF to your device">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download</span>
           </a>` : '';
 
         return `
@@ -177,8 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ${authorHtml}
             <p class="pub-desc">${desc}</p>
             <div class="pub-actions">
-              ${readerBtn}
-              ${pdfBtn}
+              ${viewPdfBtn}
+              ${downloadBtn}
             </div>
           </div>
         </div>`;
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3 class="category-title reveal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           Publications &amp; Editorial Design
-          <span class="category-sub">Digital Magazines &bull; ICAN Herald Editions &bull; Original Student Books &bull; Full PDF Archives</span>
+          <span class="category-sub">The ICAN Herald &bull; Summer 2026 &bull; Winter 2025 &bull; Winter 2019 &bull; Summer 2019 &bull; Winter 2018 &bull; Full Archival PDFs</span>
         </h3>
         <div class="pub-grid reveal" data-gallery="publications">
           ${pubCards}
