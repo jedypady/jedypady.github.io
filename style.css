@@ -389,7 +389,53 @@ body:has(button:hover) .cursor-follower {
   color: var(--text-tertiary);
   max-width: 540px;
   line-height: 1.6;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Hero Metrics Strip --- */
+.hero-metrics-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  margin-bottom: 2.25rem;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+.hero-metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text);
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.metric-lbl {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hero-metric-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
 }
 
 .text-gradient {
@@ -1422,14 +1468,71 @@ body:has(button:hover) .cursor-follower {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-2);
+  box-shadow: 0 16px 40px rgba(0, 74, 173, 0.25);
+}
+
+.video-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1rem;
+  background: rgba(12, 13, 18, 0.9);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.video-tag {
+  background: var(--accent-1);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.video-title-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .video-card video {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 16px;
   background: #000;
+}
+
+.gallery-subheading {
+  margin-top: 2.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gallery-subheading::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 /* --- Certificate Gallery --- */
@@ -1456,6 +1559,155 @@ body:has(button:hover) .cursor-follower {
 }
 
 /* --- Apps Section --- */
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 680px;
+  line-height: 1.6;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+}
+
+.apps-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.apps-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.65rem 1.25rem;
+  color: var(--text-tertiary);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.apps-search-box:focus-within {
+  border-color: var(--accent-2);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--accent-3);
+}
+
+.apps-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.apps-search-box input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.apps-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.app-chip {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+}
+
+.app-chip:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+}
+
+.app-chip.active {
+  background: var(--gradient);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 74, 173, 0.35);
+}
+
+.app-placeholder-graphic {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text-tertiary);
+  border: 1px dashed var(--border);
+}
+
+.app-placeholder-graphic span {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.app-badge-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.app-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+}
+
+.app-badge.badge-primary {
+  background: var(--accent-1);
+  color: #fff;
+}
+
+.app-badge.badge-subtle {
+  background: rgba(140, 160, 210, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.apps-count-banner {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.5rem 0;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.apps-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  border-radius: 20px;
+}
+
 .apps-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1574,6 +1826,46 @@ body:has(button:hover) .cursor-follower {
   padding: 0.2rem 0.6rem;
   border-radius: 100px;
   margin-bottom: 0.5rem;
+}
+
+/* App GitHub Repository Link */
+.app-card-actions {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+}
+
+.app-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  transition: all 0.2s var(--ease-out);
+}
+
+.app-github-link svg {
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.app-github-link:hover {
+  color: #fff;
+  background: rgba(0, 74, 173, 0.25);
+  border-color: var(--accent-1);
+  transform: translateY(-1px);
+}
+
+.app-github-link:hover svg {
+  transform: scale(1.1);
 }
 
 /* View All Apps button */
@@ -1968,6 +2260,21 @@ body:has(button:hover) .cursor-follower {
 
   .hero {
     padding-top: 6rem;
+  }
+
+  .hero-metrics-strip {
+    border-radius: 18px;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .hero-metric-divider {
+    display: none;
+  }
+
+  .apps-toolbar {
+    padding: 1rem;
   }
 
   .scroll-indicator {

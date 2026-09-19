@@ -7,10 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load data: localStorage first, then fall back to data.js ---
   let data;
+  const DATA_VERSION = '2026.3';
   try {
-    const saved = localStorage.getItem('portfolio_data');
-    if (saved) {
-      data = JSON.parse(saved);
+    const savedVersion = localStorage.getItem('portfolio_version');
+    if (savedVersion === DATA_VERSION) {
+      const saved = localStorage.getItem('portfolio_data');
+      if (saved) {
+        data = JSON.parse(saved);
+      }
+    } else {
+      localStorage.removeItem('portfolio_data');
+      localStorage.setItem('portfolio_version', DATA_VERSION);
     }
   } catch (e) { /* ignore parse errors */ }
 
@@ -58,7 +65,112 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let html = '';
 
-    // AI Robotics
+    // 1. Videography & Motion (Primary Multimedia Showcase)
+    if (data.videography) {
+      const videoTitles = [
+        "Reel 01: Motion Graphics & Commercial Highlight",
+        "Reel 02: ICAN Academy Documentary Reel",
+        "Reel 03: The Entourage Showcase",
+        "Reel 04: Scribbled Riddles Creative Short",
+        "Reel 05: Show My Rise Production",
+        "Reel 06: Commercial Sequence"
+      ];
+
+      const videos = (data.videography.videos || []).map((v, idx) =>
+        `<div class="video-card glass reveal">
+          <div class="video-header">
+            <span class="video-tag">Reel 0${idx + 1}</span>
+            <span class="video-title-label">${videoTitles[idx] || 'Multimedia Production'}</span>
+          </div>
+          <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ''} controls preload="none"></video>
+        </div>`
+      ).join('');
+
+      const stills = (data.videography.stills || []).map(img =>
+        `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`
+      ).join('');
+
+      html += `
+      <div class="portfolio-category" data-category="videography">
+        <h3 class="category-title reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Videography &amp; Motion Production
+          <span class="category-sub">After Effects &bull; Final Cut Pro &bull; ICAN Academy &bull; Scribbled Riddles &bull; Show My Rise &bull; The Entourage</span>
+        </h3>
+        <div class="video-grid reveal">${videos}</div>
+        <h4 class="gallery-subheading reveal">Production Stills &amp; Cinematography</h4>
+        <div class="masonry-grid reveal" data-gallery="videography">${stills}</div>
+      </div>`;
+    }
+
+    // 2. Photography
+    if (data.photography && data.photography.length) {
+      html += `
+      <div class="portfolio-category" data-category="photography">
+        <h3 class="category-title reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Photography
+          <span class="category-sub">Manila &bull; Seoul &bull; Taipei &bull; London &bull; Cebu &bull; Tokyo &bull; People</span>
+        </h3>
+        <div class="masonry-grid reveal" data-gallery="photography">
+          ${data.photography.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    // 3. Graphics & Visual Art
+    if (data.graphics) {
+      const gfxImages = (data.graphics.images || []).map(img =>
+        `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`
+      ).join('');
+
+      const gfxVideos = (data.graphics.videos || []).map(v =>
+        `<div class="video-card glass"><video src="${v.src}" controls preload="none"></video></div>`
+      ).join('');
+
+      html += `
+      <div class="portfolio-category" data-category="graphics">
+        <h3 class="category-title reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          Graphic Design &amp; Digital Art
+          <span class="category-sub">ICAN &bull; Chiripeppa &bull; Mockups &bull; Typography &bull; Digital Art &bull; Vectors &bull; Effects &bull; Timelapse</span>
+        </h3>
+        <div class="masonry-grid reveal" data-gallery="graphics">${gfxImages}</div>
+        <div class="video-grid reveal" style="margin-top:1.25rem;">${gfxVideos}</div>
+      </div>`;
+    }
+
+    // 4. Publications
+    if (data.publications && data.publications.length) {
+      html += `
+      <div class="portfolio-category" data-category="publications">
+        <h3 class="category-title reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          ICAN Herald — Publications &amp; Editorial Design
+          <span class="category-sub">Issue V &bull; Issue VI &bull; Issue VII &bull; Issue VIII</span>
+        </h3>
+        <div class="masonry-grid masonry-lg reveal" data-gallery="publications">
+          ${data.publications.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    // 5. UI/UX & Web Design
+    if (data.websites && data.websites.length) {
+      html += `
+      <div class="portfolio-category" data-category="uiux">
+        <h3 class="category-title reveal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          UI/UX &amp; Web Design
+          <span class="category-sub">Concepts &bull; ICAN &bull; JEDP</span>
+        </h3>
+        <div class="masonry-grid masonry-lg reveal" data-gallery="websites">
+          ${data.websites.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    // 6. AI Robotics
     if (data.ai) {
       const scenarios = data.ai.scenarios.map(s =>
         `<div class="scenario"><span class="scenario-num">${s.num}</span><span>${s.text}</span></div>`
@@ -86,97 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>`;
     }
 
-    // UI/UX
-    if (data.websites && data.websites.length) {
-      html += `
-      <div class="portfolio-category" data-category="uiux">
-        <h3 class="category-title reveal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          UI/UX &amp; Web Design
-          <span class="category-sub">Concepts &bull; ICAN &bull; JEDP</span>
-        </h3>
-        <div class="masonry-grid masonry-lg reveal" data-gallery="websites">
-          ${data.websites.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
-        </div>
-      </div>`;
-    }
-
-    // Photography
-    if (data.photography && data.photography.length) {
-      html += `
-      <div class="portfolio-category" data-category="photography">
-        <h3 class="category-title reveal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-          Photography
-          <span class="category-sub">Manila &bull; Seoul &bull; Taipei &bull; London &bull; Cebu &bull; Tokyo &bull; People</span>
-        </h3>
-        <div class="masonry-grid reveal" data-gallery="photography">
-          ${data.photography.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
-        </div>
-      </div>`;
-    }
-
-    // Videography
-    if (data.videography) {
-      const videos = (data.videography.videos || []).map(v =>
-        `<div class="video-card glass">
-          <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ''} controls preload="none"></video>
-        </div>`
-      ).join('');
-
-      const stills = (data.videography.stills || []).map(img =>
-        `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`
-      ).join('');
-
-      html += `
-      <div class="portfolio-category" data-category="videography">
-        <h3 class="category-title reveal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-          Videography
-          <span class="category-sub">After Effects &bull; Final Cut Pro &bull; ICAN Academy &bull; Scribbled Riddles &bull; Show My Rise &bull; The Entourage</span>
-        </h3>
-        <div class="video-grid reveal">${videos}</div>
-        <div class="masonry-grid reveal" data-gallery="videography" style="margin-top:1.25rem;">${stills}</div>
-      </div>`;
-    }
-
-    // Graphics
-    if (data.graphics) {
-      const gfxImages = (data.graphics.images || []).map(img =>
-        `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`
-      ).join('');
-
-      const gfxVideos = (data.graphics.videos || []).map(v =>
-        `<div class="video-card glass"><video src="${v.src}" controls preload="none"></video></div>`
-      ).join('');
-
-      html += `
-      <div class="portfolio-category" data-category="graphics">
-        <h3 class="category-title reveal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-          Graphic Design
-          <span class="category-sub">ICAN &bull; Chiripeppa &bull; Mockups &bull; Typography &bull; Digital Art &bull; Vectors &bull; Effects &bull; Timelapse</span>
-        </h3>
-        <div class="masonry-grid reveal" data-gallery="graphics">${gfxImages}</div>
-        <div class="video-grid reveal" style="margin-top:1.25rem;">${gfxVideos}</div>
-      </div>`;
-    }
-
-    // Publications
-    if (data.publications && data.publications.length) {
-      html += `
-      <div class="portfolio-category" data-category="publications">
-        <h3 class="category-title reveal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          ICAN Herald — Publications
-          <span class="category-sub">Issue V &bull; Issue VI &bull; Issue VII &bull; Issue VIII</span>
-        </h3>
-        <div class="masonry-grid masonry-lg reveal" data-gallery="publications">
-          ${data.publications.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
-        </div>
-      </div>`;
-    }
-
     // Wrap all categories in a carousel track
     container.innerHTML = `<div class="carousel-track">${html}</div>
       <div class="carousel-arrows">
@@ -189,67 +210,147 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('appsGrid');
     if (!container || !data.apps) return;
 
-    const featured = data.apps.filter(a => a.featured);
-    const others = data.apps.filter(a => !a.featured);
+    let activeFilter = 'featured';
+    let searchQuery = '';
 
-    const featuredHtml = featured.map(app => {
-      const tags = (app.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
-      return `
-      <div class="app-card featured glass reveal">
-        <div class="app-screenshot">
-          <img src="${app.screenshot}" alt="${app.name}" loading="lazy">
-        </div>
-        <div class="app-info">
-          <span class="featured-badge">Featured</span>
-          <h3>${app.name}</h3>
-          <p>${app.description}</p>
-          <div class="card-tags">${tags}</div>
-        </div>
-      </div>`;
-    }).join('');
+    function getFilteredApps() {
+      const term = searchQuery.toLowerCase().trim();
+      let apps = data.apps;
 
-    const viewAllBtn = others.length ? `
-      <div class="all-apps-cta reveal">
-        <button class="btn-view-all glass" id="btnViewAllApps">
-          <span>View All ${data.apps.length} Apps</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>` : '';
+      if (activeFilter === 'featured' && !term) {
+        apps = data.apps.filter(a => a.featured);
+      } else if (activeFilter === 'ai') {
+        apps = data.apps.filter(a =>
+          (a.tags && a.tags.some(t => /ai|vision|gpt|model|bot|recognition/i.test(t))) ||
+          /ai|gpt|intelligent|recognition|facial/i.test(a.name + ' ' + a.description)
+        );
+      } else if (activeFilter === 'operations') {
+        apps = data.apps.filter(a =>
+          (a.tags && a.tags.some(t => /notion|attendance|management|portal|report/i.test(t))) ||
+          /attendance|portal|report|log|tracker|leave/i.test(a.name + ' ' + a.description)
+        );
+      } else if (activeFilter === 'scheduling') {
+        apps = data.apps.filter(a =>
+          (a.tags && a.tags.some(t => /schedule|calendar|timetable/i.test(t))) ||
+          /schedule|calendar|booking|time/i.test(a.name + ' ' + a.description)
+        );
+      }
 
-    container.innerHTML = featuredHtml + viewAllBtn;
+      if (term) {
+        apps = apps.filter(a =>
+          a.name.toLowerCase().includes(term) ||
+          a.description.toLowerCase().includes(term) ||
+          (a.tags && a.tags.some(t => t.toLowerCase().includes(term)))
+        );
+      }
 
-    // Modal for all apps
-    const btn = document.getElementById('btnViewAllApps');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        const listHtml = others.map(app => {
-          const tags = (app.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
-          return `<div class="all-apps-item">
-            <div class="all-apps-name">${app.name}</div>
-            <div class="all-apps-desc">${app.description}</div>
-            <div class="card-tags">${tags}</div>
+      return apps;
+    }
+
+    function renderAppsList() {
+      const list = getFilteredApps();
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="apps-empty-state glass reveal active">
+            <p>No applications match "<strong>${searchQuery}</strong>".</p>
+            <button class="btn btn-ghost" id="btnClearAppSearch" style="margin-top:1rem;">Clear Search</button>
           </div>`;
-        }).join('');
+        const clearBtn = document.getElementById('btnClearAppSearch');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            const input = document.getElementById('appSearchInput');
+            if (input) input.value = '';
+            searchQuery = '';
+            renderAppsList();
+          });
+        }
+        return;
+      }
 
-        const overlay = document.createElement('div');
-        overlay.className = 'apps-modal-overlay';
-        overlay.innerHTML = `
-          <div class="apps-modal">
-            <div class="apps-modal-header">
-              <h3>All Apps <span style="color:var(--text-secondary);font-weight:400;font-size:0.9rem;">(${data.apps.length} total)</span></h3>
-              <button class="apps-modal-close">&times;</button>
+      const cardsHtml = list.map(app => {
+        const tags = (app.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+        const isFeatured = app.featured;
+        const screenshotHtml = app.screenshot ? `
+          <div class="app-screenshot">
+            <img src="${app.screenshot}" alt="${app.name}" loading="lazy">
+          </div>` : `
+          <div class="app-placeholder-graphic">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Internal Platform</span>
+          </div>`;
+
+        const githubLinkHtml = app.github ? `
+          <div class="app-card-actions">
+            <a href="${app.github}" target="_blank" rel="noopener noreferrer" class="app-github-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span>View Repository</span>
+            </a>
+          </div>` : '';
+
+        return `
+        <div class="app-card ${isFeatured ? 'featured' : ''} glass reveal active">
+          ${screenshotHtml}
+          <div class="app-info">
+            <div class="app-badge-row">
+              <span class="app-badge ${isFeatured ? 'badge-primary' : 'badge-subtle'}">${isFeatured ? '★ Featured Platform' : 'Shipped Tool'}</span>
             </div>
-            <div class="apps-modal-body">${listHtml}</div>
-          </div>`;
-        document.body.appendChild(overlay);
-        requestAnimationFrame(() => overlay.classList.add('active'));
+            <h3>${app.name}</h3>
+            <p>${app.description}</p>
+            <div class="card-tags">${tags}</div>
+            ${githubLinkHtml}
+          </div>
+        </div>`;
+      }).join('');
 
-        const close = () => { overlay.classList.remove('active'); setTimeout(() => overlay.remove(), 300); };
-        overlay.querySelector('.apps-modal-close').addEventListener('click', close);
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
-        document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
+      const countBadge = (activeFilter === 'featured' && !searchQuery) ? `
+        <div class="all-apps-cta reveal active">
+          <button class="btn-view-all glass" id="btnViewAllApps">
+            <span>Explore All ${data.apps.length} Apps &amp; Tools</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>` : `
+        <div class="apps-count-banner reveal active">
+          Showing ${list.length} of ${data.apps.length} shipped applications
+        </div>`;
+
+      container.innerHTML = cardsHtml + countBadge;
+
+      // "Explore All" button switches to 'all' filter chip
+      const viewAllBtn = document.getElementById('btnViewAllApps');
+      if (viewAllBtn) {
+        viewAllBtn.addEventListener('click', () => {
+          activeFilter = 'all';
+          document.querySelectorAll('.app-chip').forEach(c => {
+            c.classList.toggle('active', c.getAttribute('data-filter') === 'all');
+          });
+          renderAppsList();
+          container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
+    }
+
+    renderAppsList();
+
+    // Event Listeners for Search Input
+    const searchInput = document.getElementById('appSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        renderAppsList();
       });
     }
+
+    // Event Listeners for Filter Chips
+    const chips = document.querySelectorAll('.app-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.getAttribute('data-filter') || 'featured';
+        renderAppsList();
+      });
+    });
   }
 
   function renderArticles() {

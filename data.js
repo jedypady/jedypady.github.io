@@ -1,22 +1,27 @@
 const PORTFOLIO_DATA = {
   "about": {
     "photo": "",
-    "heading": "An <span class=\"text-gradient\">AI & multimedia professional</span> who ships tools that make organizations run smarter.",
+    "heading": "An <span class=\"text-gradient\">AI &amp; Multimedia Specialist</span> combining 9+ years of IT leadership, full-scale media production, and 40+ deployed applications.",
     "paragraphs": [
-      "I'm an AI and multimedia professional based in Mandaluyong, Philippines. I design AI-driven workflows, produce multimedia content, and build internal platforms that streamline operations.",
-      "My experience includes deploying AI robotics with Python and OpenCV, producing video and motion graphics for brands, and shipping 37 internal tools — scheduling systems, AI-powered report generators, facial recognition attendance, and more.",
-      "I hold a Master of Science in Engineering from Soongsil University (Seoul) and a Bachelor of Arts in Multimedia Studies from the University of the Philippines."
+      "I'm John Edward (Jed) Padilla, an AI and Multimedia Specialist based in Mandaluyong City, Philippines. I blend creative visual storytelling with technical engineering to produce high-impact digital assets—spanning end-to-end video production, motion graphics, publication design, and full-stack app ecosystems.",
+      "As the IT &amp; Multimedia Lead at ICAN Academy (~9 years), I direct organizational media operations across video, audio, and publication channels, while having architected and deployed over 40 full-stack applications and internal tools using AI CLIs (Claude, AGY, Codex), local LLM orchestration (Ollama, Exo), and modern web technologies to optimize team productivity.",
+      "I hold a Master of Science in Media Engineering from Soongsil University (Seoul), where I served as an Educational Research Assistant presenting academic findings on AI-assisted learning, alongside a Bachelor of Arts in Multimedia Studies and an Associate in Arts from the University of the Philippines."
     ],
     "stats": [
       {
-        "count": 37,
-        "plus": false,
-        "label": "Tools Shipped"
+        "count": 40,
+        "plus": true,
+        "label": "Apps & Tools Deployed"
+      },
+      {
+        "count": 9,
+        "plus": true,
+        "label": "Yrs IT & Media Lead"
       },
       {
         "count": 3,
         "plus": false,
-        "label": "Degrees Earned"
+        "label": "Academic Degrees"
       },
       {
         "count": 12,
@@ -554,7 +559,8 @@ const PORTFOLIO_DATA = {
         "Tailwind"
       ],
       "featured": true,
-      "id": "app_1"
+      "id": "app_1",
+      "github": "https://github.com/icanacademy/ol-scheduling-app"
     },
     {
       "name": "ICAN Stellar",
@@ -567,7 +573,8 @@ const PORTFOLIO_DATA = {
         "JavaScript"
       ],
       "featured": true,
-      "id": "app_2"
+      "id": "app_2",
+      "github": "https://github.com/icanacademy/ican-stellar"
     },
     {
       "name": "Where Is My Room",
@@ -579,7 +586,8 @@ const PORTFOLIO_DATA = {
         "Node.js"
       ],
       "featured": true,
-      "id": "app_3"
+      "id": "app_3",
+      "github": "https://github.com/icanacademy/where-is-my-room"
     },
     {
       "name": "Interview Sheet Generator",
@@ -592,7 +600,8 @@ const PORTFOLIO_DATA = {
         "Chart.js"
       ],
       "featured": true,
-      "id": "app_4"
+      "id": "app_4",
+      "github": "https://github.com/icanacademy/ICAN-Matchmaker"
     },
     {
       "name": "Teacher Attendance Display",
@@ -603,7 +612,8 @@ const PORTFOLIO_DATA = {
         "Node.js"
       ],
       "featured": true,
-      "id": "app_5"
+      "id": "app_5",
+      "github": "https://github.com/icanacademy/ol-attendance-app"
     },
     {
       "name": "ICAN Teacher Endorsement",
@@ -616,7 +626,8 @@ const PORTFOLIO_DATA = {
         "Vercel"
       ],
       "featured": true,
-      "id": "app_6"
+      "id": "app_6",
+      "github": "https://github.com/icanacademy/ican-teacher-endorsement"
     },
     {
       "name": "Unified Ontology Platform",
@@ -627,7 +638,8 @@ const PORTFOLIO_DATA = {
         "React",
         "TypeScript"
       ],
-      "id": "app_7"
+      "id": "app_7",
+      "github": "https://github.com/icanacademy/unified-ontology-platform"
     },
     {
       "name": "Face Recognition Attendance",
@@ -638,7 +650,8 @@ const PORTFOLIO_DATA = {
         "OpenCV",
         "Flask"
       ],
-      "id": "app_8"
+      "id": "app_8",
+      "github": "https://github.com/icanacademy/face-recognition-attendance"
     },
     {
       "name": "ICAN Data Center",
@@ -649,7 +662,8 @@ const PORTFOLIO_DATA = {
         "Docker",
         "FastAPI"
       ],
-      "id": "app_9"
+      "id": "app_9",
+      "github": "https://github.com/icanacademy/ican-data-center"
     },
     {
       "name": "NOAH's Ark",
@@ -659,7 +673,8 @@ const PORTFOLIO_DATA = {
         "TypeScript",
         "Express"
       ],
-      "id": "app_10"
+      "id": "app_10",
+      "github": "https://github.com/icanacademy/noahs-ark"
     },
     {
       "name": "Dr. ICAN's Iron Suit AI Portal",
@@ -668,7 +683,8 @@ const PORTFOLIO_DATA = {
         "TypeScript",
         "Gemini AI"
       ],
-      "id": "app_11"
+      "id": "app_11",
+      "github": "https://github.com/icanacademy/dr-ican-iron-suit"
     },
     {
       "name": "NAS File Manager",
@@ -677,7 +693,8 @@ const PORTFOLIO_DATA = {
         "Node.js",
         "WebDAV"
       ],
-      "id": "app_12"
+      "id": "app_12",
+      "github": "https://github.com/icanacademy/nas-file-manager"
     },
     {
       "name": "NAS File Doctor",
@@ -686,7 +703,8 @@ const PORTFOLIO_DATA = {
         "Python",
         "Flask"
       ],
-      "id": "app_13"
+      "id": "app_13",
+      "github": "https://github.com/icanacademy/nas-file-doctor"
     },
     {
       "name": "Parent's Request Platform",
@@ -696,7 +714,8 @@ const PORTFOLIO_DATA = {
         "TypeScript",
         "SQLite"
       ],
-      "id": "app_14"
+      "id": "app_14",
+      "github": "https://github.com/icanacademy/parents-request-platform"
     },
     {
       "name": "ICAN App Marketplace",
@@ -705,7 +724,8 @@ const PORTFOLIO_DATA = {
         "Node.js",
         "Notion API"
       ],
-      "id": "app_15"
+      "id": "app_15",
+      "github": "https://github.com/icanacademy/ican-app-marketplace"
     },
     {
       "name": "Classroom Transcriber",
@@ -715,7 +735,8 @@ const PORTFOLIO_DATA = {
         "Tauri",
         "React"
       ],
-      "id": "app_16"
+      "id": "app_16",
+      "github": "https://github.com/icanacademy/classroom-transcriber"
     },
     {
       "name": "ICAN Cosmodrive",
@@ -724,7 +745,8 @@ const PORTFOLIO_DATA = {
         "TypeScript",
         "Gemini AI"
       ],
-      "id": "app_17"
+      "id": "app_17",
+      "github": "https://github.com/icanacademy/ican-cosmodrive"
     },
     {
       "name": "ICAN EduSpace",
@@ -733,7 +755,8 @@ const PORTFOLIO_DATA = {
         "TypeScript",
         "Gemini AI"
       ],
-      "id": "app_18"
+      "id": "app_18",
+      "github": "https://github.com/icanacademy/ican-eduspace"
     },
     {
       "name": "Recipe App",
@@ -743,7 +766,8 @@ const PORTFOLIO_DATA = {
         "Node.js",
         "React"
       ],
-      "id": "app_19"
+      "id": "app_19",
+      "github": "https://github.com/icanacademy/recipe-app"
     },
     {
       "name": "ICAN Needs Analyzer",
@@ -752,7 +776,8 @@ const PORTFOLIO_DATA = {
         "Next.js",
         "TypeScript"
       ],
-      "id": "app_20"
+      "id": "app_20",
+      "github": "https://github.com/icanacademy/ican-needs-analyzer"
     },
     {
       "name": "IELTS Simulation",
@@ -761,7 +786,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_21"
+      "id": "app_21",
+      "github": "https://github.com/icanacademy/ielts-simulation"
     },
     {
       "name": "Teacher Report Generator",
@@ -770,7 +796,8 @@ const PORTFOLIO_DATA = {
         "Node.js",
         "OpenAI"
       ],
-      "id": "app_22"
+      "id": "app_22",
+      "github": "https://github.com/icanacademy/ican-stellar"
     },
     {
       "name": "Student Report Viewer",
@@ -779,7 +806,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_23"
+      "id": "app_23",
+      "github": "https://github.com/icanacademy/ican-stellar"
     },
     {
       "name": "Student Report App",
@@ -788,7 +816,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "PostgreSQL"
       ],
-      "id": "app_24"
+      "id": "app_24",
+      "github": "https://github.com/icanacademy/student-report-app"
     },
     {
       "name": "Teacher Schedule Viewer",
@@ -797,7 +826,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_25"
+      "id": "app_25",
+      "github": "https://github.com/icanacademy/ol-scheduling-app"
     },
     {
       "name": "Student Attendance Checker",
@@ -806,7 +836,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_26"
+      "id": "app_26",
+      "github": "https://github.com/icanacademy/ol-attendance-app"
     },
     {
       "name": "Tuition Tracker",
@@ -815,7 +846,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_27"
+      "id": "app_27",
+      "github": "https://github.com/icanacademy/tuition-tracker"
     },
     {
       "name": "Academy Coaching App",
@@ -824,7 +856,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_28"
+      "id": "app_28",
+      "github": "https://github.com/icanacademy/academy-coaching-app"
     },
     {
       "name": "OL Attendance App",
@@ -833,7 +866,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Vercel"
       ],
-      "id": "app_29"
+      "id": "app_29",
+      "github": "https://github.com/icanacademy/ol-attendance-app"
     },
     {
       "name": "OL Scheduling App",
@@ -842,7 +876,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Vercel"
       ],
-      "id": "app_30"
+      "id": "app_30",
+      "github": "https://github.com/icanacademy/ol-scheduling-app"
     },
     {
       "name": "ICAN Reading Assessment",
@@ -852,7 +887,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Notion API"
       ],
-      "id": "app_31"
+      "id": "app_31",
+      "github": "https://github.com/icanacademy/ican-reading-assessment"
     },
     {
       "name": "ICAN Demo Assessment",
@@ -860,7 +896,8 @@ const PORTFOLIO_DATA = {
       "tags": [
         "JavaScript"
       ],
-      "id": "app_32"
+      "id": "app_32",
+      "github": "https://github.com/icanacademy/ican-demo-assessment"
     },
     {
       "name": "ICAN Hiring Protocol",
@@ -869,7 +906,8 @@ const PORTFOLIO_DATA = {
         "JavaScript",
         "Node.js"
       ],
-      "id": "app_33"
+      "id": "app_33",
+      "github": "https://github.com/icanacademy/ican-hiring-protocol"
     },
     {
       "name": "ICAN Herald",
@@ -878,7 +916,8 @@ const PORTFOLIO_DATA = {
         "CSS",
         "HTML"
       ],
-      "id": "app_34"
+      "id": "app_34",
+      "github": "https://github.com/icanacademy/ican-herald"
     },
     {
       "name": "ICAN Space Education",
@@ -888,7 +927,8 @@ const PORTFOLIO_DATA = {
         "React",
         "Builder.io"
       ],
-      "id": "app_35"
+      "id": "app_35",
+      "github": "https://github.com/icanacademy/ican-space-education"
     },
     {
       "name": "Desktop App",
@@ -898,7 +938,8 @@ const PORTFOLIO_DATA = {
         "HTML",
         "JavaScript"
       ],
-      "id": "app_36"
+      "id": "app_36",
+      "github": "https://github.com/icanacademy/desktop-app"
     },
     {
       "name": "ICAN Academy Website",
@@ -907,7 +948,8 @@ const PORTFOLIO_DATA = {
         "HTML",
         "JavaScript"
       ],
-      "id": "app_37"
+      "id": "app_37",
+      "github": "https://github.com/icanacademy/icanacademy"
     }
   ],
   "articles": [
@@ -944,23 +986,23 @@ const PORTFOLIO_DATA = {
   ],
   "education": [
     {
-      "degree": "Master of Science in Engineering",
+      "degree": "Master of Science in Media Engineering",
       "school": "Soongsil University",
-      "location": "Seoul, South Korea",
+      "location": "Seoul, South Korea &bull; 2024",
       "flag": "&#127472;&#127479;",
       "id": "edu_1"
     },
     {
       "degree": "Bachelor of Arts in Multimedia Studies",
       "school": "University of the Philippines",
-      "location": "Philippines",
+      "location": "Philippines &bull; 2020",
       "flag": "&#127477;&#127469;",
       "id": "edu_2"
     },
     {
       "degree": "Associate in Arts",
       "school": "University of the Philippines",
-      "location": "Philippines",
+      "location": "Philippines &bull; 2016",
       "flag": "&#127477;&#127469;",
       "id": "edu_3"
     }

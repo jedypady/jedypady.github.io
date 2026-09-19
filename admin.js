@@ -44,12 +44,19 @@
   // --- Data management ---
   let data;
   let hasUnsaved = false;
+  const DATA_VERSION = '2026.3';
 
   function loadData() {
     try {
-      const saved = localStorage.getItem('portfolio_data');
-      if (saved) {
-        data = JSON.parse(saved);
+      const savedVersion = localStorage.getItem('portfolio_version');
+      if (savedVersion === DATA_VERSION) {
+        const saved = localStorage.getItem('portfolio_data');
+        if (saved) {
+          data = JSON.parse(saved);
+        }
+      } else {
+        localStorage.removeItem('portfolio_data');
+        localStorage.setItem('portfolio_version', DATA_VERSION);
       }
     } catch (e) { /* ignore */ }
 
@@ -672,6 +679,7 @@
         <div class="form-group"><label>Name</label><input id="editName" value="${app.name}"></div>
         <div class="form-group"><label>Description</label><textarea id="editDesc">${app.description}</textarea></div>
         <div class="form-group"><label>Screenshot Path</label><input id="editScreenshot" value="${app.screenshot || ''}"></div>
+        <div class="form-group"><label>GitHub Repository URL</label><input id="editGithub" value="${app.github || ''}" placeholder="https://github.com/icanacademy/..."></div>
         <div class="form-group"><label>Tags (comma-separated)</label><input id="editTags" value="${(app.tags || []).join(', ')}"></div>
         <div class="modal-actions">
           <button class="btn" onclick="document.getElementById('modalOverlay').classList.remove('active')">Cancel</button>
@@ -681,6 +689,8 @@
         app.name = document.getElementById('editName').value;
         app.description = document.getElementById('editDesc').value;
         app.screenshot = document.getElementById('editScreenshot').value;
+        const gh = document.getElementById('editGithub').value.trim();
+        if (gh) { app.github = gh; } else { delete app.github; }
         app.tags = document.getElementById('editTags').value.split(',').map(t => t.trim()).filter(Boolean);
         closeModal(); saveData(); renderCurrentTab();
       };
@@ -692,6 +702,7 @@
         <div class="form-group"><label>Name</label><input id="addName" placeholder="App Name"></div>
         <div class="form-group"><label>Description</label><textarea id="addDesc" placeholder="App description..."></textarea></div>
         <div class="form-group"><label>Screenshot Path</label><input id="addScreenshot" placeholder="assets/apps/screenshot.png"></div>
+        <div class="form-group"><label>GitHub Repository URL</label><input id="addGithub" placeholder="https://github.com/icanacademy/..."></div>
         <div class="form-group"><label>Tags (comma-separated)</label><input id="addTags" placeholder="iOS, Swift, Firebase"></div>
         <div class="modal-actions">
           <button class="btn" onclick="document.getElementById('modalOverlay').classList.remove('active')">Cancel</button>
@@ -700,13 +711,16 @@
       document.getElementById('addSave').onclick = () => {
         const name = document.getElementById('addName').value.trim();
         if (!name) { showToast('Name is required', true); return; }
-        data.apps.push({
+        const gh = document.getElementById('addGithub').value.trim();
+        const newApp = {
           name,
           description: document.getElementById('addDesc').value,
           screenshot: document.getElementById('addScreenshot').value,
           tags: document.getElementById('addTags').value.split(',').map(t => t.trim()).filter(Boolean),
           id: generateId('app')
-        });
+        };
+        if (gh) newApp.github = gh;
+        data.apps.push(newApp);
         closeModal(); saveData(); renderCurrentTab();
       };
       return;
