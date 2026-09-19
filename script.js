@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load data: localStorage first, then fall back to data.js ---
   let data;
-  const DATA_VERSION = '2026.5';
+  const DATA_VERSION = '2026.6';
   try {
     const savedVersion = localStorage.getItem('portfolio_version');
     if (savedVersion === DATA_VERSION) {
@@ -76,15 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
         "Reel 06: Commercial Sequence"
       ];
 
-      const videos = (data.videography.videos || []).map((v, idx) =>
-        `<div class="video-card glass reveal">
+      const videos = (data.videography.videos || []).map((v, idx) => {
+        const tag = v.tag || `Reel 0${idx + 1}`;
+        const title = v.title || videoTitles[idx] || 'Multimedia Production';
+        return `<div class="video-card glass reveal">
           <div class="video-header">
-            <span class="video-tag">Reel 0${idx + 1}</span>
-            <span class="video-title-label">${videoTitles[idx] || 'Multimedia Production'}</span>
+            <span class="video-tag">${tag}</span>
+            <span class="video-title-label">${title}</span>
           </div>
           <video src="${v.src}"${v.poster ? ` poster="${v.poster}"` : ''} controls preload="none"></video>
-        </div>`
-      ).join('');
+        </div>`;
+      }).join('');
 
       const stills = (data.videography.stills || []).map(img =>
         `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`

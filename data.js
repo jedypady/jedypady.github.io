@@ -210,6 +210,13 @@ const PORTFOLIO_DATA = {
   "videography": {
     "videos": [
       {
+        "src": "assets/videos/the-truth-about-masterminds.mp4",
+        "poster": "assets/videography/the-truth-about-masterminds-poster.jpg",
+        "title": "The Truth About Masterminds — YouTube Video Edit",
+        "tag": "YouTube Edit",
+        "id": "vid_masterminds"
+      },
+      {
         "src": "assets/videos/f2ff9d_67812df33bc64e698e4ee216483ebdce.mp4",
         "poster": "assets/videography/f2ff9d_67812df33bc64e698e4ee216483ebdcef000.jpg",
         "id": "vid_1"
