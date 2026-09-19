@@ -142,16 +142,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Publications
     if (data.publications && data.publications.length) {
+      const pubCards = data.publications.map(pub => {
+        const coverSrc = pub.cover || pub.src;
+        const tag = pub.tag || pub.issue || 'Publication';
+        const issue = pub.issue || '';
+        const title = pub.title || pub.alt || 'ICAN Publication';
+        const desc = pub.description || '';
+        const authorHtml = pub.author ? `<div class="pub-author"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${pub.author}</div>` : '';
+        const sizePill = pub.fileSize ? `<span class="pub-filesize">${pub.fileSize}</span>` : '';
+        const readerBtn = pub.reader ? `
+          <a href="${pub.reader}" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-primary" title="Open digital flipbook reader">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Read Online</span>
+          </a>` : '';
+        const pdfBtn = pub.pdf ? `
+          <a href="${pub.pdf}" target="_blank" rel="noopener noreferrer" class="pub-btn pub-btn-secondary" title="View or download PDF">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>PDF</span>
+          </a>` : '';
+
+        return `
+        <div class="pub-card glass reveal">
+          <div class="pub-cover gallery-img">
+            <img src="${coverSrc}" alt="${pub.alt || title}" loading="lazy">
+            <div class="img-overlay"><span>Enlarge Cover</span></div>
+            <span class="pub-badge">${tag}</span>
+          </div>
+          <div class="pub-content">
+            <div class="pub-header-row">
+              <span class="pub-edition">${issue}</span>
+              ${sizePill}
+            </div>
+            <h4 class="pub-title">${title}</h4>
+            ${authorHtml}
+            <p class="pub-desc">${desc}</p>
+            <div class="pub-actions">
+              ${readerBtn}
+              ${pdfBtn}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+      const spreadsHtml = (data.publicationSpreads && data.publicationSpreads.length) ? `
+        <h4 class="gallery-subheading reveal">Editorial Layout Spreads &amp; Print Typography</h4>
+        <div class="masonry-grid masonry-lg reveal" data-gallery="publicationSpreads">
+          ${data.publicationSpreads.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
+        </div>` : '';
+
       html += `
       <div class="portfolio-category" data-category="publications">
         <h3 class="category-title reveal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          ICAN Herald — Publications &amp; Editorial Design
-          <span class="category-sub">Issue V &bull; Issue VI &bull; Issue VII &bull; Issue VIII</span>
+          Publications &amp; Editorial Design
+          <span class="category-sub">Digital Magazines &bull; ICAN Herald Editions &bull; Original Student Books &bull; Full PDF Archives</span>
         </h3>
-        <div class="masonry-grid masonry-lg reveal" data-gallery="publications">
-          ${data.publications.map(img => `<div class="gallery-img"><img src="${img.src}" alt="${img.alt}" loading="lazy"><div class="img-overlay"><span>${img.alt}</span></div></div>`).join('')}
+        <div class="pub-grid reveal" data-gallery="publications">
+          ${pubCards}
         </div>
+        ${spreadsHtml}
       </div>`;
     }
 
