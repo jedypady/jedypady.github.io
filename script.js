@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load data: localStorage first, then fall back to data.js ---
   let data;
-  const DATA_VERSION = '2026.4';
+  const DATA_VERSION = '2026.5';
   try {
     const savedVersion = localStorage.getItem('portfolio_version');
     if (savedVersion === DATA_VERSION) {
@@ -990,7 +990,7 @@ document.addEventListener('DOMContentLoaded', () => {
             payload.isp = (geo.connection && (geo.connection.isp || geo.connection.org)) || 'N/A';
           }
 
-          const webAppUrl = 'https://script.google.com/macros/s/AKfycbxZQok1urjhVgId7WGpYTv6nBQLZB7SmhG7V8dnJ02qlecWiO-eS9_1uFet6XhnFctH/exec';
+          const webAppUrl = 'https://script.google.com/macros/s/AKfycbwcKVdr_kVJO7CQnjeb_b7VLYud9fs44iNslXWcT46Ky3k-dKFyc7znYwBXHL1uW40y/exec';
 
           // Send via GET query parameter (handles redirects transparently)
           fetch(webAppUrl + '?data=' + encodeURIComponent(JSON.stringify(payload)), { mode: 'no-cors' })
