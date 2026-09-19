@@ -233,8 +233,8 @@ const PORTFOLIO_DATA = {
       {
         "src": "assets/videos/f2ff9d_2be3f1695cbf487994a2ab04bcd640e7.mp4",
         "poster": "assets/videography/f2ff9d_2be3f1695cbf487994a2ab04bcd640e7f000.jpg",
-        "title": "ICAN Academy Documentary Reel",
-        "tag": "Documentary",
+        "title": "Clipped Presentation",
+        "tag": "Presentation",
         "id": "vid_3"
       },
       {

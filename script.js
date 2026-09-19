@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "The Truth About Masterminds",
         "Creative Edit & Visual Effects Test",
         "Ben Interview & Executive Showcase",
-        "ICAN Academy Documentary Reel",
+        "Clipped Presentation",
         "Successful Company Brand Production",
         "Motion Graphics & Color Sequence",
         "Kinetic Typography & Creative Animation"
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "YouTube Edit",
         "VFX Test",
         "Interview Reel",
-        "Documentary",
+        "Presentation",
         "Commercial",
         "Motion Reel",
         "Typography"
