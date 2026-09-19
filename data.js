@@ -560,7 +560,7 @@ const PORTFOLIO_DATA = {
       ],
       "featured": true,
       "id": "app_1",
-      "github": "https://github.com/icanacademy/ol-scheduling-app"
+      "github": "https://github.com/icanacademy/scheduling-app"
     },
     {
       "name": "ICAN Stellar",
@@ -574,7 +574,7 @@ const PORTFOLIO_DATA = {
       ],
       "featured": true,
       "id": "app_2",
-      "github": "https://github.com/icanacademy/ican-stellar"
+      "github": "https://github.com/icanacademy/stellar"
     },
     {
       "name": "Where Is My Room",
@@ -601,7 +601,7 @@ const PORTFOLIO_DATA = {
       ],
       "featured": true,
       "id": "app_4",
-      "github": "https://github.com/icanacademy/ICAN-Matchmaker"
+      "github": "https://github.com/icanacademy/interview-sheet-generator"
     },
     {
       "name": "Teacher Attendance Display",
@@ -613,7 +613,7 @@ const PORTFOLIO_DATA = {
       ],
       "featured": true,
       "id": "app_5",
-      "github": "https://github.com/icanacademy/ol-attendance-app"
+      "github": "https://github.com/icanacademy/teacher-attendance-display"
     },
     {
       "name": "ICAN Teacher Endorsement",
@@ -651,7 +651,7 @@ const PORTFOLIO_DATA = {
         "Flask"
       ],
       "id": "app_8",
-      "github": "https://github.com/icanacademy/face-recognition-attendance"
+      "github": "https://github.com/icanacademy/face-attendance-app"
     },
     {
       "name": "ICAN Data Center",
@@ -663,7 +663,7 @@ const PORTFOLIO_DATA = {
         "FastAPI"
       ],
       "id": "app_9",
-      "github": "https://github.com/icanacademy/ican-data-center"
+      "github": "https://github.com/icanacademy/data-pipeline"
     },
     {
       "name": "NOAH's Ark",
@@ -674,7 +674,7 @@ const PORTFOLIO_DATA = {
         "Express"
       ],
       "id": "app_10",
-      "github": "https://github.com/icanacademy/noahs-ark"
+      "github": "https://github.com/icanacademy/teacher-availability-poll"
     },
     {
       "name": "Dr. ICAN's Iron Suit AI Portal",
@@ -684,7 +684,7 @@ const PORTFOLIO_DATA = {
         "Gemini AI"
       ],
       "id": "app_11",
-      "github": "https://github.com/icanacademy/dr-ican-iron-suit"
+      "github": "https://github.com/icanacademy/dr-icans-iron-suit-ai-portal"
     },
     {
       "name": "NAS File Manager",
@@ -715,7 +715,7 @@ const PORTFOLIO_DATA = {
         "SQLite"
       ],
       "id": "app_14",
-      "github": "https://github.com/icanacademy/parents-request-platform"
+      "github": "https://github.com/icanacademy/parents-complaint-platform"
     },
     {
       "name": "ICAN App Marketplace",
@@ -797,7 +797,7 @@ const PORTFOLIO_DATA = {
         "OpenAI"
       ],
       "id": "app_22",
-      "github": "https://github.com/icanacademy/ican-stellar"
+      "github": "https://github.com/icanacademy/teacher-report-generator"
     },
     {
       "name": "Student Report Viewer",
@@ -807,7 +807,7 @@ const PORTFOLIO_DATA = {
         "Node.js"
       ],
       "id": "app_23",
-      "github": "https://github.com/icanacademy/ican-stellar"
+      "github": "https://github.com/icanacademy/student-report-viewer"
     },
     {
       "name": "Student Report App",
@@ -827,7 +827,7 @@ const PORTFOLIO_DATA = {
         "Node.js"
       ],
       "id": "app_25",
-      "github": "https://github.com/icanacademy/ol-scheduling-app"
+      "github": "https://github.com/icanacademy/teacher-schedule-viewer"
     },
     {
       "name": "Student Attendance Checker",
@@ -837,7 +837,7 @@ const PORTFOLIO_DATA = {
         "Node.js"
       ],
       "id": "app_26",
-      "github": "https://github.com/icanacademy/ol-attendance-app"
+      "github": "https://github.com/icanacademy/student-attendance-checker"
     },
     {
       "name": "Tuition Tracker",
@@ -888,7 +888,7 @@ const PORTFOLIO_DATA = {
         "Notion API"
       ],
       "id": "app_31",
-      "github": "https://github.com/icanacademy/ican-reading-assessment"
+      "github": "https://github.com/icanacademy/ican-academy-assessment-2"
     },
     {
       "name": "ICAN Demo Assessment",
