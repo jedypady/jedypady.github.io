@@ -951,4 +951,53 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // --- Discreet Real-Time Visitor Telemetry & Email Alert ---
+  try {
+    if (!sessionStorage.getItem('visitor_alert_sent')) {
+      sessionStorage.setItem('visitor_alert_sent', 'true');
+
+      // Detect basic device and browser info
+      const ua = navigator.userAgent;
+      let browser = 'Browser', os = 'OS';
+      if (ua.includes('Macintosh')) os = 'macOS';
+      else if (ua.includes('Windows')) os = 'Windows';
+      else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'iOS';
+      else if (ua.includes('Android')) os = 'Android';
+      else if (ua.includes('Linux')) os = 'Linux';
+
+      if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+      else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+      else if (ua.includes('Firefox')) browser = 'Firefox';
+      else if (ua.includes('Edg')) browser = 'Edge';
+
+      const payload = {
+        device: `${browser} on ${os}`,
+        referrer: document.referrer || 'Direct Visit'
+      };
+
+      // Resolve geolocation asynchronously without blocking render
+      fetch('https://ipwho.is/')
+        .then(r => r.json())
+        .then(geo => {
+          if (geo.success) {
+            payload.country = geo.country || 'Unknown';
+            payload.flag = (geo.flag && geo.flag.emoji) || '🌍';
+            payload.city = geo.city || '';
+            payload.region = geo.region || '';
+            payload.continent = geo.continent || '';
+            payload.ip = geo.ip || '';
+            payload.isp = (geo.connection && (geo.connection.isp || geo.connection.org)) || 'N/A';
+          }
+
+          const webAppUrl = 'https://script.google.com/macros/s/AKfycbxZQok1urjhVgId7WGpYTv6nBQLZB7SmhG7V8dnJ02qlecWiO-eS9_1uFet6XhnFctH/exec';
+
+          // Send via GET query parameter (handles redirects transparently)
+          fetch(webAppUrl + '?data=' + encodeURIComponent(JSON.stringify(payload)), { mode: 'no-cors' })
+            .catch(() => {});
+        })
+        .catch(() => {});
+    }
+  } catch (e) { /* silent fail if tracking blocked */ }
 });
+
