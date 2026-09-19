@@ -5,25 +5,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Load data: localStorage first, then fall back to data.js ---
-  let data;
-  const DATA_VERSION = '2026.7';
+  // Always use fresh PORTFOLIO_DATA on main site, clearing any stale cached copy
   try {
-    const savedVersion = localStorage.getItem('portfolio_version');
-    if (savedVersion === DATA_VERSION) {
-      const saved = localStorage.getItem('portfolio_data');
-      if (saved) {
-        data = JSON.parse(saved);
-      }
-    } else {
-      localStorage.removeItem('portfolio_data');
-      localStorage.setItem('portfolio_version', DATA_VERSION);
-    }
-  } catch (e) { /* ignore parse errors */ }
-
-  if (!data) {
-    data = PORTFOLIO_DATA;
-  }
+    localStorage.removeItem('portfolio_data');
+    localStorage.removeItem('portfolio_version');
+  } catch (e) {}
+  const data = PORTFOLIO_DATA;
 
   // ============================================
   // RENDER FUNCTIONS
@@ -67,18 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Videography & Motion (Primary Multimedia Showcase)
     if (data.videography) {
-      const videoTitles = [
-        "Reel 01: Motion Graphics & Commercial Highlight",
-        "Reel 02: ICAN Academy Documentary Reel",
-        "Reel 03: The Entourage Showcase",
-        "Reel 04: Scribbled Riddles Creative Short",
-        "Reel 05: Show My Rise Production",
-        "Reel 06: Commercial Sequence"
+      const defaultTitles = [
+        "The Truth About Masterminds",
+        "Creative Edit & Visual Effects Test",
+        "Ben Interview & Executive Showcase",
+        "ICAN Academy Documentary Reel",
+        "Successful Company Brand Production",
+        "Motion Graphics & Color Sequence",
+        "Kinetic Typography & Creative Animation"
+      ];
+
+      const defaultTags = [
+        "YouTube Edit",
+        "VFX Test",
+        "Interview Reel",
+        "Documentary",
+        "Commercial",
+        "Motion Reel",
+        "Typography"
       ];
 
       const videos = (data.videography.videos || []).map((v, idx) => {
-        const tag = v.tag || `Reel 0${idx + 1}`;
-        const title = v.title || videoTitles[idx] || 'Multimedia Production';
+        const tag = v.tag || defaultTags[idx] || `Reel 0${idx + 1}`;
+        const title = v.title || defaultTitles[idx] || 'Multimedia Production';
         return `<div class="video-card glass reveal">
           <div class="video-header">
             <span class="video-tag">${tag}</span>
