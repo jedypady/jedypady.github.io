@@ -44,7 +44,7 @@
   // --- Data management ---
   let data;
   let hasUnsaved = false;
-  const DATA_VERSION = '2026.6';
+  const DATA_VERSION = '2026.7';
 
   function loadData() {
     try {

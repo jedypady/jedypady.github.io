@@ -212,38 +212,50 @@ const PORTFOLIO_DATA = {
       {
         "src": "assets/videos/the-truth-about-masterminds.mp4",
         "poster": "assets/videography/the-truth-about-masterminds-poster.jpg",
-        "title": "The Truth About Masterminds — YouTube Video Edit",
+        "title": "The Truth About Masterminds",
         "tag": "YouTube Edit",
         "id": "vid_masterminds"
       },
       {
         "src": "assets/videos/f2ff9d_67812df33bc64e698e4ee216483ebdce.mp4",
         "poster": "assets/videography/f2ff9d_67812df33bc64e698e4ee216483ebdcef000.jpg",
+        "title": "Creative Edit & Visual Effects Test",
+        "tag": "VFX Test",
         "id": "vid_1"
       },
       {
         "src": "assets/videos/f2ff9d_6cbe8b37e19f4e95a13105a53bea1dba.mp4",
         "poster": "assets/videography/f2ff9d_6cbe8b37e19f4e95a13105a53bea1dbaf000.jpg",
+        "title": "Ben Interview & Executive Showcase",
+        "tag": "Interview Reel",
         "id": "vid_2"
       },
       {
         "src": "assets/videos/f2ff9d_2be3f1695cbf487994a2ab04bcd640e7.mp4",
         "poster": "assets/videography/f2ff9d_2be3f1695cbf487994a2ab04bcd640e7f000.jpg",
+        "title": "ICAN Academy Documentary Reel",
+        "tag": "Documentary",
         "id": "vid_3"
       },
       {
         "src": "assets/videos/f2ff9d_a797bbaff6de4c4e9e6d95a3fec8b3df.mp4",
         "poster": "assets/videography/f2ff9d_a797bbaff6de4c4e9e6d95a3fec8b3dff000.jpg",
+        "title": "Successful Company Brand Production",
+        "tag": "Commercial",
         "id": "vid_4"
       },
       {
         "src": "assets/videos/f2ff9d_42829aef8b674dbdb52bd50adfa002c5.mp4",
         "poster": "assets/videography/f2ff9d_42829aef8b674dbdb52bd50adfa002c5f000.jpg",
+        "title": "Motion Graphics & Color Sequence",
+        "tag": "Motion Reel",
         "id": "vid_5"
       },
       {
         "src": "assets/videos/f2ff9d_b58b5289fd174735a6bfa30400284047.mp4",
         "poster": "assets/videography/f2ff9d_b58b5289fd174735a6bfa30400284047f000.jpg",
+        "title": "Kinetic Typography & Creative Animation",
+        "tag": "Typography",
         "id": "vid_6"
       }
     ],

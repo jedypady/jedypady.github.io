@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load data: localStorage first, then fall back to data.js ---
   let data;
-  const DATA_VERSION = '2026.6';
+  const DATA_VERSION = '2026.7';
   try {
     const savedVersion = localStorage.getItem('portfolio_version');
     if (savedVersion === DATA_VERSION) {
