@@ -2313,6 +2313,32 @@ body:has(button:hover) .cursor-follower {
   .masonry-lg {
     columns: 1;
   }
+
+  .apps-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .app-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .app-chip {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* --- Smooth transitions for page load --- */
